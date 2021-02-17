@@ -11,8 +11,7 @@ namespace GTA_Kingpin.Database
         {
             using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
             {
-                GlobalVariables.ChangeDatabaseUpdatedCharacter(true);
-                return db.GetCollection<Character>(Tables.Character.ToString()).Query().Single();
+                return db.GetCollection<Character>(Tables.Character.ToString()).Query().FirstOrDefault();
             }
         }
 

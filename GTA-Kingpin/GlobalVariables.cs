@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using GTA_Kingpin.Helpers;
+using System.IO;
 
 namespace GTA_Kingpin
 {
@@ -10,14 +11,15 @@ namespace GTA_Kingpin
         public static string ScriptsFolder = CurrentDirectory+"\\scripts";
         public static string KingpinFolder = ScriptsFolder+"\\Kingpin";
 
-        public static string DatabaseLocation = KingpinFolder + "\\data.db";
+        public static bool DevelopmentEnabled = false;
 
-        public static bool DatabaseUpdatedCharacter = false;
-
-        public static void ChangeDatabaseUpdatedCharacter (bool value)
+        public static void ToggleDevelopment()
         {
-            DatabaseUpdatedCharacter = value;
+            DevelopmentEnabled = !DevelopmentEnabled;
+            UIHelper.ShowNotification("~o~Development mode " + (DevelopmentEnabled ? "~g~Enabled" : "~r~Disabled"));
         }
+
+        public static string DatabaseLocation = "filename=" + KingpinFolder + "\\data.db;upgrade=true";
 
     }
 }

@@ -2,7 +2,6 @@
 {
     class Drug
     {
-
         public string Name { get; set; }
         public int BaseBuyPrice { get; set; }
         public int BaseSellPrice { get; set; }
