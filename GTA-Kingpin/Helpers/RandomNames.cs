@@ -9,7 +9,7 @@ namespace GTA_Kingpin.Helpers
         public static string GetRandomName()
         {
             List<string> names = GetMaleNames();
-            return names[MiscHelper.GetRandomNumber(0, names.Count)];
+            return names[MiscHelper.GetRandomNumber(0, names.Count-1)];
         }
 
         private static List<string> GetMaleNames()

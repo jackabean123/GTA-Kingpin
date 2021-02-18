@@ -1,4 +1,5 @@
 ﻿using GTA_Kingpin.Objects;
+using GTA_Kingpin.Scripts;
 using LiteDB;
 using static GTA_Kingpin.Database.DatabaseManager;
 
@@ -24,6 +25,7 @@ namespace GTA_Kingpin.Database
                 var collection = db.GetCollection<Character>(Tables.Character.ToString());
                 collection.Update(character);
             }
+            DatabaseHandler.requestDealers = true;
         }
 
     }

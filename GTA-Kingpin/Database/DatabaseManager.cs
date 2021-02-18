@@ -18,7 +18,8 @@ namespace GTA_Kingpin.Database
 
         public static void Create()
         {
-            if (!Exists()) {
+            UIHelper.ShowNotification("Exists? " + Exists());
+            if (!Exists() && !DatabaseHandler.DBCreated) {
                 Logger.Log("Creating Database");
                 NewDatabase();
                 DatabaseHandler.DBCreated = true;
@@ -67,7 +68,7 @@ namespace GTA_Kingpin.Database
 
         private static bool Exists()
         {
-            return File.Exists(GlobalVariables.DatabaseLocation);
+            return File.Exists(GlobalVariables.RawDatabaseLocation);
         }
 
     }

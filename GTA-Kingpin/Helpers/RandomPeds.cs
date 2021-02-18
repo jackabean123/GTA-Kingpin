@@ -9,7 +9,7 @@ namespace GTA_Kingpin.Helpers
         public static PedHash GetRandomPed()
         {
             List<PedHash> peds = GetPedList();
-            return peds[MiscHelper.GetRandomNumber(0, peds.Count)];
+            return peds[MiscHelper.GetRandomNumber(0, peds.Count-1)];
         }
 
         private static List<PedHash> GetPedList()

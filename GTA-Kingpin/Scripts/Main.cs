@@ -31,13 +31,14 @@ namespace GTA_Kingpin.Scripts
 
         public Main()
         {
+            CreateDatabase();
+
             Tick += OnTick;
-            Interval = 5000;
+            Interval = 1000;
         }
 
         private void OnTick(object sender, EventArgs e)
         {
-            CreateDatabase();
             UpdateUIScript();
             LoadDealers();
         }
@@ -48,6 +49,7 @@ namespace GTA_Kingpin.Scripts
             {
                 DatabaseManager.Create();
             }
+            DatabaseHandler.initialised = true;
         }
 
         private void UpdateUIScript()

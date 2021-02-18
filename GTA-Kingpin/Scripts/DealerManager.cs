@@ -2,12 +2,13 @@
 using GTA_Kingpin.Helpers;
 using GTA_Kingpin.Objects;
 using System;
-using System.Windows.Forms;
 
 namespace GTA_Kingpin.Scripts
 {
     class DealerManager : Script
     {
+
+        private bool instantiated = false;
 
         public DealerManager()
         {
@@ -17,7 +18,7 @@ namespace GTA_Kingpin.Scripts
 
         private void OnTick(object sender, EventArgs e)
         {
-            if (DatabaseHandler.initialised)
+            if (DatabaseHandler.initialised && !instantiated)
                 Instantiate();
         }
 
@@ -30,11 +31,15 @@ namespace GTA_Kingpin.Scripts
 
         private void SpawnDealers()
         {
-            foreach (Dealer dealer in DatabaseHandler.dealers)
+            if (DatabaseHandler.dealers != null)
             {
-                Ped ped = World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
-                dealer.Ped = ped;
-            }
+                foreach (Dealer dealer in DatabaseHandler.dealers)
+                {
+                    UIHelper.ShowNotification("Spawning Ped: " + dealer.Name);
+                    World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
+                }
+                instantiated = true;
+            }            
         }
 
         private void Instantiate()

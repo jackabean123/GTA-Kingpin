@@ -1,8 +1,8 @@
 ﻿using GTA;
 using GTA_Kingpin.Database;
 using GTA_Kingpin.Helpers;
-using GTA_Kingpin.Objects;
 using System;
+using System.Windows.Forms;
 
 namespace GTA_Kingpin.Scripts
 {
@@ -14,8 +14,15 @@ namespace GTA_Kingpin.Scripts
             Instantiate();
 
             Tick += OnTick;
+            KeyDown += OnKeyDown;
 
             Interval = 10;
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Alt)
+                CharacterDB.AmendXp(1);
         }
 
         private void OnTick(object sender, EventArgs e)
@@ -26,8 +33,6 @@ namespace GTA_Kingpin.Scripts
 
         private void Instantiate()
         {
-            
-            
             UIHelper.ShowNotification("~r~||| ~g~Kingpin Initialised ~b~" + GlobalVariables.Version + " ~r~|||");
         }
 

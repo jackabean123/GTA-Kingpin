@@ -20,6 +20,7 @@ namespace GTA_Kingpin
         }
 
         public static string DatabaseLocation = "filename=" + KingpinFolder + "\\data.db;upgrade=true";
+        public static string RawDatabaseLocation = KingpinFolder + "\\data.db";
 
     }
 }
