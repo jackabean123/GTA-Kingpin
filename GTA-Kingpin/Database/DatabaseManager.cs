@@ -18,7 +18,6 @@ namespace GTA_Kingpin.Database
 
         public static void Create()
         {
-            UIHelper.ShowNotification("Exists? " + Exists());
             if (!Exists() && !DatabaseHandler.DBCreated) {
                 Logger.Log("Creating Database");
                 NewDatabase();

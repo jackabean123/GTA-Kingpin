@@ -35,8 +35,8 @@ namespace GTA_Kingpin.Scripts
             {
                 foreach (Dealer dealer in DatabaseHandler.dealers)
                 {
-                    UIHelper.ShowNotification("Spawning Ped: " + dealer.Name);
-                    World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
+                    Ped ped = World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
+                    dealer.Ped = ped;
                 }
                 instantiated = true;
             }            

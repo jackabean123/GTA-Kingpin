@@ -18,10 +18,10 @@ namespace GTA_Kingpin.Objects
         public Dealer()
         {
             Name = RandomNames.GetRandomName();
-            X = 86;
-            Y = -1958;
-            Z = 21;
-            R = 344;
+            X = 85.50f;
+            Y = -1959.43f;
+            Z = 21.12f;
+            R = 344.75f;
             Ped = null;
         }
 
