@@ -27,6 +27,8 @@ namespace GTA_Kingpin.Scripts
             foreach (Dealer dealer in DatabaseHandler.dealers)
                 if (dealer.Ped != null)
                     dealer.Ped.Delete();
+            foreach (Blip blip in DatabaseHandler.dealerBlips)
+                blip.Delete();
         }
 
         private void SpawnDealers()
@@ -36,7 +38,13 @@ namespace GTA_Kingpin.Scripts
                 foreach (Dealer dealer in DatabaseHandler.dealers)
                 {
                     Ped ped = World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
+                    Blip blip = World.CreateBlip(dealer.GetVector3());
+                    blip.Sprite = BlipSprite.Drugs;
+                    blip.Color = BlipColor.Green;
+                    blip.Name = dealer.Name + " (Dealer)";
+                    blip.CategoryType = BlipCategoryType.DistanceShown;
                     dealer.Ped = ped;
+                    DatabaseHandler.dealerBlips.Add(blip);
                 }
                 instantiated = true;
             }            
