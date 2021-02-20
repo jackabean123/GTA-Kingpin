@@ -16,12 +16,12 @@ namespace GTA_Kingpin.Scripts
             Tick += OnTick;
             KeyDown += OnKeyDown;
 
-            Interval = 10;
+            Interval = 8;
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Alt)
+            if (e.KeyCode == Keys.Add)
                 CharacterDB.AmendXp(1);
         }
 

@@ -1,7 +1,11 @@
-﻿namespace GTA_Kingpin.Objects
+﻿using LiteDB;
+
+namespace GTA_Kingpin.Objects
 {
     class Drug
     {
+        [BsonId]
+        public long Id { get; set; }
         public string Name { get; set; }
         public int BaseBuyPrice { get; set; }
         public int BaseSellPrice { get; set; }

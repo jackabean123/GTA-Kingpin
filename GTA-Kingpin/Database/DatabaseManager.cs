@@ -22,6 +22,8 @@ namespace GTA_Kingpin.Database
                 Logger.Log("Creating Database");
                 NewDatabase();
                 DatabaseHandler.DBCreated = true;
+            } else {
+                DatabaseHandler.DBCreated = Exists();
             }
         }
 
@@ -32,29 +34,23 @@ namespace GTA_Kingpin.Database
                 using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
                 {
                     Logger.Log("Creating characters table");
-                    var collection = db.GetCollection<Character>(Tables.Character.ToString());
+                    var characterCollection = db.GetCollection<Character>(Tables.Character.ToString());
                     Character character = new Character();
-                    collection.Upsert(character);
-                    Logger.Log("Characters rows: " + collection.Query().Count());
-                }
+                    characterCollection.Upsert(character);
+                    Logger.Log("Characters rows: " + characterCollection.Query().Count());
 
-                using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
-                {
                     Logger.Log("Creating drugs table");
-                    var collection = db.GetCollection<Drug>(Tables.Drugs.ToString());
+                    var drugCollection = db.GetCollection<Drug>(Tables.Drugs.ToString());
                     List<Drug> drugList = DrugHelper.CreateDrugList();
                     foreach (Drug d in drugList)
-                        collection.Upsert(d);
-                    Logger.Log("Drugs rows: " + collection.Query().Count());
-                }
+                        drugCollection.Upsert(d);
+                    Logger.Log("Drugs rows: " + drugCollection.Query().Count());
 
-                using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
-                {
                     Logger.Log("Creating dealer table");
-                    var collection = db.GetCollection<Dealer>(Tables.Dealer.ToString());
+                    var dealerCollection = db.GetCollection<Dealer>(Tables.Dealer.ToString());
                     var dealer = new Dealer();
-                    collection.Upsert(dealer);
-                    Logger.Log("Dealer rows: " + collection.Query().Count());
+                    dealerCollection.Upsert(dealer);
+                    Logger.Log("Dealer rows: " + dealerCollection.Query().Count());
                 }
 
             } catch (Exception e)

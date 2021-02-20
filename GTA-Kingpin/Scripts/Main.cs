@@ -35,7 +35,7 @@ namespace GTA_Kingpin.Scripts
             CreateDatabase();
 
             Tick += OnTick;
-            Interval = 1000;
+            Interval = 100;
         }
 
         private void OnTick(object sender, EventArgs e)

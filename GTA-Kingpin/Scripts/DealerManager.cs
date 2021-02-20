@@ -14,12 +14,23 @@ namespace GTA_Kingpin.Scripts
         {
             Tick += OnTick;
             Aborted += OnAbort;
+
+            Interval = 1000;
         }
 
         private void OnTick(object sender, EventArgs e)
         {
             if (DatabaseHandler.initialised && !instantiated)
                 Instantiate();
+
+            if (DatabaseHandler.initialised && instantiated)
+            {
+                int? dealerInRange = GetDealerInVecinity();
+                if (dealerInRange != null)
+                {
+                    UIHelper.ShowNotification("In vecinity of " + DatabaseHandler.dealers[(int)dealerInRange].Name);
+                }
+            }
         }
 
         private void OnAbort(object sender, EventArgs e)
@@ -42,7 +53,6 @@ namespace GTA_Kingpin.Scripts
                     blip.Sprite = BlipSprite.Drugs;
                     blip.Color = BlipColor.Green;
                     blip.Name = dealer.Name + " (Dealer)";
-                    blip.CategoryType = BlipCategoryType.DistanceShown;
                     dealer.Ped = ped;
                     DatabaseHandler.dealerBlips.Add(blip);
                 }
@@ -53,6 +63,14 @@ namespace GTA_Kingpin.Scripts
         private void Instantiate()
         {
             SpawnDealers();
+        }
+
+        private int? GetDealerInVecinity()
+        {
+            for (int i = 0; i < DatabaseHandler.dealers.Count; i++)
+                if (DatabaseHandler.dealers[i].GetVector3().DistanceTo(Game.Player.Character.Position) < 5)
+                    return i;
+            return null;
         }
 
     }

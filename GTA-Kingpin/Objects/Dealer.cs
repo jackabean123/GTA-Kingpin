@@ -1,13 +1,14 @@
 ﻿using GTA;
 using GTA.Math;
-using GTA_Kingpin.Database;
 using GTA_Kingpin.Helpers;
+using LiteDB;
 
 namespace GTA_Kingpin.Objects
 {
     class Dealer
     {
-
+        [BsonId]
+        public int Id { get; set; }
         public string Name { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
