@@ -1,7 +1,9 @@
 ﻿using GTA;
 using GTA_Kingpin.Helpers;
+using GTA_Kingpin.Menus;
 using GTA_Kingpin.Objects;
 using System;
+using System.Windows.Forms;
 
 namespace GTA_Kingpin.Scripts
 {
@@ -14,6 +16,7 @@ namespace GTA_Kingpin.Scripts
         {
             Tick += OnTick;
             Aborted += OnAbort;
+            KeyDown += OnKeyDown;
 
             Interval = 1000;
         }
@@ -28,8 +31,23 @@ namespace GTA_Kingpin.Scripts
                 PedHelper.CheckNearbyDealer();
                 if (DatabaseHandler.dealerInRangeIndex != null)
                 {
-                    UIHelper.ShowNotification("In vecinity of ");
+                    if (GlobalVariables.dealerMenu == null)
+                        DealerMenu.CreateMenu(DatabaseHandler.dealers[(int)DatabaseHandler.dealerInRangeIndex]);
                 }
+                else
+                {
+                    GlobalVariables.dealerMenu = null;
+                }
+            }
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (DatabaseHandler.initialised && instantiated)
+            {
+                if (DatabaseHandler.dealerInRangeIndex != null && e.KeyCode == Keys.E)
+                    if (GlobalVariables.dealerMenu != null)
+                        DealerMenu.ToggleMenu();
             }
         }
 

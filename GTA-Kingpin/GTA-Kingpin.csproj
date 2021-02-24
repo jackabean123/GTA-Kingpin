@@ -73,6 +73,7 @@
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Helpers\VehicleHelper.cs" />
     <Compile Include="Menus\CharacterInventory.cs" />
+    <Compile Include="Menus\DealerMenu.cs" />
     <Compile Include="Menus\DeveloperMenu.cs" />
     <Compile Include="Objects\Character.cs" />
     <Compile Include="Objects\Dealer.cs" />

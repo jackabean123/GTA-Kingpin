@@ -26,10 +26,12 @@ namespace GTA_Kingpin
         public static string RawDatabaseLocation = KingpinFolder + "\\data.db";
 
         public static string DevMenuBanner = ImagesFolder + "\\dev_banner.png";
+        public static string DealerMenuBanner = ImagesFolder + "\\dealer_banner.png";
 
         public static MenuPool pool = new MenuPool();
 
         public static UIMenu devMenu;
+        public static UIMenu dealerMenu;
 
     }
 }

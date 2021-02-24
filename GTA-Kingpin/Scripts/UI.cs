@@ -19,7 +19,7 @@ namespace GTA_Kingpin.Scripts
         {
             if (DatabaseHandler.DBCreated)
                 UIHelper.ShowStats(DatabaseHandler.character);
-            if (DatabaseHandler.dealerInRangeIndex != null)
+            if (DatabaseHandler.dealerInRangeIndex != null && !GlobalVariables.dealerMenu.Visible)
                 UIHelper.ShowNearDealer();
         }
 
