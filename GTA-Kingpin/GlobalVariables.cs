@@ -19,7 +19,7 @@ namespace GTA_Kingpin
         {
             DevelopmentEnabled = !DevelopmentEnabled;
             devMenu.Visible = false;
-            UIHelper.ShowNotification("~w~Development mode " + (DevelopmentEnabled ? "~g~Enabled" : "~r~Disabled"));
+            UIHelper.ShowNotification("~w~Development Mode " + (DevelopmentEnabled ? "~g~Enabled" : "~r~Disabled"));
         }
 
         public static string DatabaseLocation = "filename=" + KingpinFolder + "\\data.db;upgrade=true";

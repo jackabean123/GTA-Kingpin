@@ -3,6 +3,7 @@ using GTA_Kingpin.Database;
 using GTA_Kingpin.Objects;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace GTA_Kingpin.Scripts
 {
@@ -21,6 +22,7 @@ namespace GTA_Kingpin.Scripts
         public static bool requestDealers = true;
         public static List<Dealer> dealers = null;
         public static List<Blip> dealerBlips = new List<Blip>();
+        public static int? dealerInRangeIndex = null;
 
         /* All Scripts */
         public static bool initialised = false;

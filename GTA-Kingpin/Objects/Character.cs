@@ -1,4 +1,6 @@
-﻿using LiteDB;
+﻿using GTA;
+using GTA_Kingpin.Database;
+using LiteDB;
 
 namespace GTA_Kingpin.Objects
 {
@@ -7,7 +9,6 @@ namespace GTA_Kingpin.Objects
 
         [BsonId]
         public int Id { get; set; }
-
         public int Xp { get; set; }
 
         public Character(int xp)
@@ -18,6 +19,11 @@ namespace GTA_Kingpin.Objects
         public Character()
         {
             Xp = 0;
+        }
+
+        public Inventory GetInventory()
+        {
+            return InventoryDB.GetCharacterInventory();
         }
 
     }

@@ -25,10 +25,10 @@ namespace GTA_Kingpin.Scripts
 
             if (DatabaseHandler.initialised && instantiated)
             {
-                int? dealerInRange = GetDealerInVecinity();
-                if (dealerInRange != null)
+                PedHelper.CheckNearbyDealer();
+                if (DatabaseHandler.dealerInRangeIndex != null)
                 {
-                    UIHelper.ShowNotification("In vecinity of " + DatabaseHandler.dealers[(int)dealerInRange].Name);
+                    UIHelper.ShowNotification("In vecinity of ");
                 }
             }
         }
@@ -48,29 +48,22 @@ namespace GTA_Kingpin.Scripts
             {
                 foreach (Dealer dealer in DatabaseHandler.dealers)
                 {
-                    Ped ped = World.CreatePed(RandomPeds.GetRandomPed(), dealer.GetVector3(), dealer.R);
+                    Ped ped = World.CreatePed(dealer.GetPedHash(), dealer.GetVector3(), dealer.R);
                     Blip blip = World.CreateBlip(dealer.GetVector3());
                     blip.Sprite = BlipSprite.Drugs;
-                    blip.Color = BlipColor.Green;
+                    blip.Color = BlipColor.Blue2;
+                    blip.IsShortRange = true;
                     blip.Name = dealer.Name + " (Dealer)";
                     dealer.Ped = ped;
                     DatabaseHandler.dealerBlips.Add(blip);
                 }
                 instantiated = true;
-            }            
+            }
         }
 
         private void Instantiate()
         {
             SpawnDealers();
-        }
-
-        private int? GetDealerInVecinity()
-        {
-            for (int i = 0; i < DatabaseHandler.dealers.Count; i++)
-                if (DatabaseHandler.dealers[i].GetVector3().DistanceTo(Game.Player.Character.Position) < 5)
-                    return i;
-            return null;
         }
 
     }

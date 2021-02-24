@@ -25,7 +25,7 @@ namespace GTA_Kingpin.Database
                 var collection = db.GetCollection<Character>(Tables.Character.ToString());
                 collection.Update(character);
             }
-            DatabaseHandler.requestDealers = true;
+            DatabaseHandler.requestCharacter = true;
         }
 
     }

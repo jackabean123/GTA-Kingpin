@@ -1,4 +1,5 @@
-﻿using GTA_Kingpin.Helpers;
+﻿using GTA;
+using GTA_Kingpin.Helpers;
 using GTA_Kingpin.Objects;
 using GTA_Kingpin.Scripts;
 using LiteDB;
@@ -13,7 +14,7 @@ namespace GTA_Kingpin.Database
 
         public enum Tables
         {
-            Character, Drugs, Dealer
+            Character, Drugs, Dealer, Inventory
         }
 
         public static void Create()
@@ -41,14 +42,14 @@ namespace GTA_Kingpin.Database
 
                     Logger.Log("Creating drugs table");
                     var drugCollection = db.GetCollection<Drug>(Tables.Drugs.ToString());
-                    List<Drug> drugList = DrugHelper.CreateDrugList();
+                    List<Drug> drugList = MiscHelper.CreateDrugList();
                     foreach (Drug d in drugList)
                         drugCollection.Upsert(d);
                     Logger.Log("Drugs rows: " + drugCollection.Query().Count());
 
                     Logger.Log("Creating dealer table");
                     var dealerCollection = db.GetCollection<Dealer>(Tables.Dealer.ToString());
-                    var dealer = new Dealer();
+                    var dealer = new Dealer(PedHash.Terry);
                     dealerCollection.Upsert(dealer);
                     Logger.Log("Dealer rows: " + dealerCollection.Query().Count());
                 }
