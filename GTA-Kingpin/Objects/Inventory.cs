@@ -1,5 +1,5 @@
-﻿using GTA_Kingpin.Database;
-using GTA_Kingpin.Helpers;
+﻿using GTA_Kingpin.Helpers;
+using GTA_Kingpin.Scripts;
 using LiteDB;
 
 namespace GTA_Kingpin.Objects
@@ -11,81 +11,81 @@ namespace GTA_Kingpin.Objects
         public int Id { get; set; }
         public int CharacterId { get; set; }
         public int DealerId { get; set; }
-        public InvDrug Weed { get; set; }
-        public InvDrug Heroin { get; set; }
-        public InvDrug Ketamine { get; set; }
-        public InvDrug Meth { get; set; }
-        public InvDrug LSD { get; set; }
-        public InvDrug MDMA { get; set; }
-        public InvDrug Spice { get; set; }
-        public InvDrug Steroids { get; set; }
-        public InvDrug Cocaine { get; set; }
+        public int WeedId { get; set; }
+        public int WeedAmount { get; set; }
+        public int HeroinId { get; set; }
+        public int HeroinAmount { get; set; }
+        public int KetamineId { get; set; }
+        public int KetamineAmount { get; set; }
+        public int MethId { get; set; }
+        public int MethAmount { get; set; }
+        public int LSDId { get; set; }
+        public int LSDAmount { get; set; }
+        public int MDMAId { get; set; }
+        public int MDMAAmount { get; set; }
+        public int SpiceId { get; set; }
+        public int SpiceAmount { get; set; }
+        public int SteroidsId { get; set; }
+        public int SteroidsAmount { get; set; }
+        public int CocaineId { get; set; }
+        public int CocaineAmount { get; set; }
 
-        public Inventory(int id, int characterId, int dealerId, InvDrug weed, InvDrug heroin,
-            InvDrug ketamine, InvDrug meth, InvDrug lSD, InvDrug mDMA, InvDrug spice,
-            InvDrug steroids, InvDrug cocaine)
+        public Inventory(int id, int characterId, int dealerId, int weedId, int weedAmount, int heroinId,
+            int heroinAmount, int ketamineId, int ketamineAmount, int methId, int methAmount, int lSDId,
+            int lSDAmount, int mDMAId, int mDMAAmount, int spiceId, int spiceAmount, int steroidsId,
+            int steroidsAmount, int cocaineId, int cocaineAmount)
         {
             Id = id;
             CharacterId = characterId;
             DealerId = dealerId;
-            Weed = weed;
-            Heroin = heroin;
-            Ketamine = ketamine;
-            Meth = meth;
-            LSD = lSD;
-            MDMA = mDMA;
-            Spice = spice;
-            Steroids = steroids;
-            Cocaine = cocaine;
+            WeedId = weedId;
+            WeedAmount = weedAmount;
+            HeroinId = heroinId;
+            HeroinAmount = heroinAmount;
+            KetamineId = ketamineId;
+            KetamineAmount = ketamineAmount;
+            MethId = methId;
+            MethAmount = methAmount;
+            LSDId = lSDId;
+            LSDAmount = lSDAmount;
+            MDMAId = mDMAId;
+            MDMAAmount = mDMAAmount;
+            SpiceId = spiceId;
+            SpiceAmount = spiceAmount;
+            SteroidsId = steroidsId;
+            SteroidsAmount = steroidsAmount;
+            CocaineId = cocaineId;
+            CocaineAmount = cocaineAmount;
         }
 
-        public Inventory(int characterId, int dealerId, Drugs weed, Drugs heroin, Drugs ketamine,
-            Drugs meth, Drugs lsd, Drugs mdma, Drugs spice, Drugs steroids, Drugs cocaine)
+        public Inventory()
         {
-            CharacterId = characterId;
+            
+        }
+
+        public Inventory(int dealerId)
+        {
+            CharacterId = 0;
             DealerId = dealerId;
-            Weed = new InvDrug(weed);
-            Heroin = new InvDrug(heroin);
-            Ketamine = new InvDrug(ketamine);
-            Meth = new InvDrug(meth);
-            LSD = new InvDrug(lsd);
-            MDMA = new InvDrug(mdma);
-            Spice = new InvDrug(spice);
-            Steroids = new InvDrug(steroids);
-            Cocaine = new InvDrug(cocaine);
+            WeedId = DatabaseHandler.Weed.Id;
+            WeedAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Weed);
+            HeroinId = DatabaseHandler.Heroin.Id;
+            HeroinAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Heroin);
+            KetamineId = DatabaseHandler.Ketamine.Id;
+            KetamineAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Ketamine);
+            MethId = DatabaseHandler.Meth.Id;
+            MethAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Meth);
+            LSDId = DatabaseHandler.LSD.Id;
+            LSDAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.LSD);
+            MDMAId = DatabaseHandler.MDMA.Id;
+            MDMAAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.MDMA);
+            SpiceId = DatabaseHandler.Spice.Id;
+            SpiceAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Spice);
+            SteroidsId = DatabaseHandler.Steroids.Id;
+            SteroidsAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Steroids);
+            CocaineId = DatabaseHandler.Cocaine.Id;
+            CocaineAmount = MiscHelper.GenerateDrugAmount(DatabaseHandler.Cocaine);
         }
-
-    }
-
-    class InvDrug
-    {
-        public Drug Drug { get; set; }
-        public int Amount { get; set; }
-
-        public InvDrug(int drugId, int amount)
-        {
-            Drug = DrugDB.GetDrugById(drugId);
-            Amount = amount;
-        }
-
-        public InvDrug(Drugs drug, int amount)
-        {
-            Drug = DrugDB.GetDrugById((int)drug);
-            Amount = amount;
-        }
-
-        public InvDrug (int drugId)
-        {
-            Drug = DrugDB.GetDrugById(drugId);
-            Amount = MiscHelper.GenerateDrugAmount(Drug);
-        }
-
-        public InvDrug(Drugs drug)
-        {
-            Drug = DrugDB.GetDrugById((int)drug);
-            Amount = MiscHelper.GenerateDrugAmount(Drug);
-        }
-
     }
 
 }

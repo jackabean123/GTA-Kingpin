@@ -1,5 +1,4 @@
-﻿using GTA;
-using GTA_Kingpin.Helpers;
+﻿using GTA_Kingpin.Helpers;
 using GTA_Kingpin.Objects;
 using GTA_Kingpin.Scripts;
 using LiteDB;
@@ -32,7 +31,7 @@ namespace GTA_Kingpin.Database
         {
             try
             {
-                using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
+                using (var db = new LiteDatabase(GlobalVariables.DataDatabaseLocation))
                 {
                     Logger.Log("Creating characters table");
                     var characterCollection = db.GetCollection<Character>(Tables.Character.ToString());
@@ -47,11 +46,11 @@ namespace GTA_Kingpin.Database
                         drugCollection.Upsert(d);
                     Logger.Log("Drugs rows: " + drugCollection.Query().Count());
 
-                    Logger.Log("Creating dealer table");
-                    var dealerCollection = db.GetCollection<Dealer>(Tables.Dealer.ToString());
-                    var dealer = new Dealer(PedHash.Terry);
-                    dealerCollection.Upsert(dealer);
-                    Logger.Log("Dealer rows: " + dealerCollection.Query().Count());
+                    Logger.Log("Creating character inventory " + character.Id);
+                    var inventoryCollection = db.GetCollection<Inventory>(Tables.Inventory.ToString());
+                    var inventory = new Inventory() { CharacterId = character.Id };
+                    inventoryCollection.Insert(inventory);
+                    Logger.Log("Inventory rows: " + inventoryCollection.Count());
                 }
 
             } catch (Exception e)

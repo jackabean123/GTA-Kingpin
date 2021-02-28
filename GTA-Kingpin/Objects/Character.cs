@@ -21,10 +21,5 @@ namespace GTA_Kingpin.Objects
             Xp = 0;
         }
 
-        public Inventory GetInventory()
-        {
-            return InventoryDB.GetCharacterInventory();
-        }
-
     }
 }

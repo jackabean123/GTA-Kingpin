@@ -1,6 +1,8 @@
 ﻿using GTA;
 using GTA_Kingpin.Helpers;
+using GTA_Kingpin.Menus;
 using System;
+using System.Windows.Forms;
 
 namespace GTA_Kingpin.Scripts
 {
@@ -11,6 +13,7 @@ namespace GTA_Kingpin.Scripts
             Instantiate();
 
             Tick += OnTick;
+            KeyDown += OnKeyDown;
 
             Interval = 8;
         }
@@ -19,8 +22,14 @@ namespace GTA_Kingpin.Scripts
         {
             if (DatabaseHandler.DBCreated)
                 UIHelper.ShowStats(DatabaseHandler.character);
-            if (DatabaseHandler.dealerInRangeIndex != null && !GlobalVariables.dealerMenu.Visible)
-                UIHelper.ShowNearDealer();
+            if (DatabaseHandler.dealerInRangeIndex != null && GlobalVariables.dealerMenu != null && !GlobalVariables.dealerMenu.Visible)
+                UIHelper.ShowNearDealer(DatabaseHandler.dealers[(int)DatabaseHandler.dealerInRangeIndex]);
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.I)
+                CharacterInventory.Toggle();
         }
 
         private void Instantiate()

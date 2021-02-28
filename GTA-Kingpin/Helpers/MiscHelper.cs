@@ -34,7 +34,7 @@ namespace GTA_Kingpin.Helpers
 
         public static int GenerateDrugAmount(Drug drug)
         {
-            return GetRandomNumber(0, drug.BaseAmount * LevelCalculator.GetPlayerLevel(DatabaseHandler.character.Xp));
+            return GetRandomNumber(0, (drug.BaseAmount * LevelCalculator.GetPlayerLevel(DatabaseHandler.character.Xp)));
         }
 
     }

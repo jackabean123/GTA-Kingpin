@@ -26,11 +26,13 @@ namespace GTA_Kingpin.Helpers
             elmnt.Draw();
         }
 
-        public static void ShowNearDealer()
+        public static void ShowNearDealer(Dealer dealer)
         {
-            GTA.UI.TextElement elmnt = new GTA.UI.TextElement("~w~Press ~g~E ~w~to talk to the dealer",
-                new PointF(GTA.UI.Screen.Width - (GTA.UI.Screen.Width - 20), GTA.UI.Screen.Height - (GTA.UI.Screen.Height - 20)), 0.4f, Color.White, GTA.UI.Font.ChaletLondon);
-            elmnt.Outline = true;
+            GTA.UI.TextElement elmnt = new GTA.UI.TextElement("~w~Press ~g~E ~w~to talk to " + dealer.Name,
+                new PointF(GTA.UI.Screen.Width - (GTA.UI.Screen.Width - 20), GTA.UI.Screen.Height - (GTA.UI.Screen.Height - 20)), 0.4f, Color.White, GTA.UI.Font.ChaletLondon)
+            {
+                Outline = true
+            };
             elmnt.Draw();
         }
 

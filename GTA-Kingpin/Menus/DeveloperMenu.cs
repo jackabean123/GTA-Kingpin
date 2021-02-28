@@ -2,6 +2,8 @@
 using GTA.Math;
 using GTA_Kingpin.Database;
 using GTA_Kingpin.Helpers;
+using GTA_Kingpin.Objects;
+using GTA_Kingpin.Scripts;
 using NativeUI;
 using System;
 using System.IO;
@@ -32,7 +34,7 @@ namespace GTA_Kingpin.Menus
             GlobalVariables.devMenu.AddItem(new UIMenuItem("~r~Clear Ped", "Clears the ped model"));
 
             GlobalVariables.devMenu.AddItem(new UIMenuItem("~g~Add Dealer Location", "Adds a new dealer location"));
-            GlobalVariables.devMenu.AddItem(new UIMenuItem("~r~Remove Dealer Location", "Removes nearest dealer"));
+            GlobalVariables.devMenu.AddItem(new UIMenuItem("~r~Remove Dealer Location", "Removes dealer within interaction range"));
 
             GlobalVariables.pool.Add(GlobalVariables.devMenu);
         }
@@ -56,6 +58,12 @@ namespace GTA_Kingpin.Menus
                 case "~r~Clear Ped":
                     if (Ped != null)
                         Ped.Delete();
+                    break;
+                case "~r~Remove Dealer Location":
+                    if (DatabaseHandler.dealerInRangeIndex == null)
+                        UIHelper.ShowNotification("No dealer in range");
+                    else
+                        DatabaseHandler.removeDealer = DatabaseHandler.dealerInRangeIndex;
                     break;
             }
         }
@@ -86,7 +94,7 @@ namespace GTA_Kingpin.Menus
                     }
                     break;
             }
-            
+
         }
 
         static internal PedHash GetPedFromString(string PedName)

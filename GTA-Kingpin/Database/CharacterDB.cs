@@ -10,7 +10,7 @@ namespace GTA_Kingpin.Database
 
         public static Character GetCharacter()
         {
-            using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
+            using (var db = new LiteDatabase(GlobalVariables.DataDatabaseLocation))
             {
                 return db.GetCollection<Character>(Tables.Character.ToString()).Query().FirstOrDefault();
             }
@@ -20,7 +20,7 @@ namespace GTA_Kingpin.Database
         {
             Character character = GetCharacter();
             character.Xp += amount;
-            using (var db = new LiteDatabase(GlobalVariables.DatabaseLocation))
+            using (var db = new LiteDatabase(GlobalVariables.DataDatabaseLocation))
             {
                 var collection = db.GetCollection<Character>(Tables.Character.ToString());
                 collection.Update(character);

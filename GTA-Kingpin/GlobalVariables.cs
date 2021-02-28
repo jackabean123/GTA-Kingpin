@@ -22,16 +22,20 @@ namespace GTA_Kingpin
             UIHelper.ShowNotification("~w~Development Mode " + (DevelopmentEnabled ? "~g~Enabled" : "~r~Disabled"));
         }
 
-        public static string DatabaseLocation = "filename=" + KingpinFolder + "\\data.db;upgrade=true";
+        public static string DataDatabaseLocation = "filename=" + KingpinFolder + "\\data.db;upgrade=true";
+        public static string LocationsDatabaseLocation = "filename=" + KingpinFolder + "\\locations.db;upgrade=true";
+
         public static string RawDatabaseLocation = KingpinFolder + "\\data.db";
 
         public static string DevMenuBanner = ImagesFolder + "\\dev_banner.png";
         public static string DealerMenuBanner = ImagesFolder + "\\dealer_banner.png";
+        public static string CharacterMenuBanner = ImagesFolder + "\\character_banner.png";        
 
         public static MenuPool pool = new MenuPool();
 
         public static UIMenu devMenu;
         public static UIMenu dealerMenu;
+        public static UIMenu characterMenu;
 
     }
 }

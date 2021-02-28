@@ -34,6 +34,7 @@ namespace GTA_Kingpin.Helpers
                 if (DatabaseHandler.dealers[i].GetVector3().DistanceTo(Game.Player.Character.Position) < 5)
                 {
                     DatabaseHandler.dealerInRangeIndex = i;
+                    DatabaseHandler.requestDealerInventory = true;
                     return;
                 } else {
                     DatabaseHandler.dealerInRangeIndex = null;

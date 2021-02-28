@@ -29,7 +29,7 @@ namespace GTA_Kingpin.Scripts
             if (DatabaseHandler.initialised && instantiated)
             {
                 PedHelper.CheckNearbyDealer();
-                if (DatabaseHandler.dealerInRangeIndex != null)
+                if (DatabaseHandler.dealerInRangeIndex != null && DatabaseHandler.dealerInventory != null)
                 {
                     if (GlobalVariables.dealerMenu == null)
                         DealerMenu.CreateMenu(DatabaseHandler.dealers[(int)DatabaseHandler.dealerInRangeIndex]);
